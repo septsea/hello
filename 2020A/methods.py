@@ -394,8 +394,8 @@ def leastsquares(y, *x):
 
     x: k+1 lists, each containing n numbers (the k+1 independent variables).
 
-    A dictionary(map) containing [beta_i] ("coefficients"), R_squared
-    and delta_squared_sum will be returned.
+    A dictionary(map) containing [beta_i] (`coefficients`), `R_squared`
+    and `delta_squared_sum` will be returned.
     """
     n: int = len(y)
     for l in x:
@@ -423,6 +423,21 @@ def leastsquares(y, *x):
 
 
 def poly_leastsquares(x, y, degree: int = 1):
+    """
+    Gives the least-squares polynomial model of `x` and `y`:
+
+    `y = beta_0 * 1 + beta_1 * x + beta_2 * x**2 + ... + beta_i * x**i`
+
+    x: a list containing n numbers (the independent variable).
+
+    y: a list containing n numbers (the dependent variable).
+
+    degree: (optional.) the desired degree of the polynomial model.
+    If not specified, it is 1.
+
+    A dictionary(map) containing [beta_i] (`coefficients`), `R_squared`
+    and `delta_squared_sum` will be returned.
+    """
     if (len(x) != len(y)):
         raise Exception("!!!")
     n: int = len(x)
