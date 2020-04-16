@@ -395,7 +395,7 @@ def leastsquares(y, *x):
     x: k+1 lists, each containing n numbers (the k+1 independent variables).
 
     A dictionary(map) containing [beta_i] (`coefficients`), `R_squared`
-    and `delta_squared_sum` will be returned.
+    and `error_squared_sum` will be returned.
     """
     n: int = len(y)
     for l in x:
@@ -413,12 +413,12 @@ def leastsquares(y, *x):
     y_hat = y_hat_m.transpose().toList()[0]
     delta = [y_hat[i] - y[i] for i in range(n)]
     square = lambda t: t * t
-    delta_squared_sum = sum(map(square, delta))
-    R_squared = 1 - delta_squared_sum / sum(map(square, y))
+    error_squared_sum = sum(map(square, delta))
+    R_squared = 1 - error_squared_sum / sum(map(square, y))
     return {
         "coefficients": beta,
         "R_squared": R_squared,
-        "delta_squared_sum": delta_squared_sum
+        "error_squared_sum": error_squared_sum
     }
 
 
@@ -436,7 +436,7 @@ def poly_leastsquares(x, y, degree: int = 1):
     If not specified, it is 1.
 
     A dictionary(map) containing [beta_i] (`coefficients`), `R_squared`
-    and `delta_squared_sum` will be returned.
+    and `error_squared_sum` will be returned.
     """
     if (len(x) != len(y)):
         raise Exception("!!!")
